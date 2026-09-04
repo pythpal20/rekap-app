@@ -10,7 +10,7 @@ export const generatePickupPDF = (filteredPickups, filterSupplierName, startDate
     doc.text('REKAP PENGAMBILAN BARANG', 14, 18);
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text('Aplikasi SiRekap - InspireShopi', 14, 24);
+    doc.text('Aplikasi SiRekap - PerMaKo243', 14, 24);
 
     const supplierText = filterSupplierName || 'Semua Supplier';
     const periodeText = (startDate || endDate) ? `${startDate || 'Awal'} s/d ${endDate || 'Hari ini'}` : 'Semua Tanggal';
