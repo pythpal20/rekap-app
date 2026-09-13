@@ -39,8 +39,8 @@ export default function Sidebar({
             }}
         >
             {/* Header Sidebar dengan Tombol Burger */}
-            <div 
-                className={`d-flex align-items-center border-bottom border-secondary border-opacity-25 ${isSidebarCollapsed ? 'justify-content-center px-0 flex-column gap-1' : 'justify-content-between px-3'}`} 
+            <div
+                className={`d-flex align-items-center border-bottom border-secondary border-opacity-25 ${isSidebarCollapsed ? 'justify-content-center px-0 flex-column gap-1' : 'justify-content-between px-3'}`}
                 style={{ height: '70px' }}
             >
                 {!isSidebarCollapsed ? (
@@ -56,8 +56,8 @@ export default function Sidebar({
                         </div>
 
                         {/* Burger Button untuk Collapse Sidebar (Desktop) */}
-                        <Button 
-                            variant="link" 
+                        <Button
+                            variant="link"
                             className="text-white-50 text-hover-white p-1 d-none d-md-inline-flex align-items-center justify-content-center text-decoration-none"
                             onClick={() => setIsSidebarCollapsed(true)}
                             title="Perkecil Sidebar"
@@ -67,8 +67,8 @@ export default function Sidebar({
                     </>
                 ) : (
                     /* Burger Button untuk Expand Sidebar saat kondisi Collapsed (Desktop) */
-                    <Button 
-                        variant="link" 
+                    <Button
+                        variant="link"
                         className="text-white p-0 border-0 d-none d-md-inline-flex align-items-center justify-content-center text-decoration-none"
                         onClick={() => setIsSidebarCollapsed(false)}
                         title="Perluas Sidebar"
@@ -78,9 +78,9 @@ export default function Sidebar({
                 )}
 
                 {/* Tombol Tutup (Mobile) */}
-                <Button 
-                    variant="link" 
-                    className="text-white d-md-none p-0 text-decoration-none" 
+                <Button
+                    variant="link"
+                    className="text-white d-md-none p-0 text-decoration-none"
                     onClick={() => setIsMobileOpen(false)}
                     title="Tutup Menu"
                 >
@@ -188,6 +188,18 @@ export default function Sidebar({
                         {!isSidebarCollapsed && <Badge bg="secondary" pill style={{ fontSize: '0.65rem' }}>{allProductsCount}</Badge>}
                     </button>
 
+                    <button
+                        onClick={() => handleNav('rekomendasi-modal')}
+                        className={`w-100 btn text-start d-flex align-items-center ${isSidebarCollapsed ? 'justify-content-center px-0' : 'justify-content-between px-3'} py-2 rounded-3 border-0 mt-1 ${activeMenu === 'rekomendasi-modal' ? 'bg-primary text-white fw-bold shadow-sm' : 'text-light text-opacity-75'}`}
+                        title={isSidebarCollapsed ? 'Rekomendasi Restock' : ''}
+                    >
+                        <div className="d-flex align-items-center gap-3">
+                            <i className="bi bi-calculator-fill fs-5 text-info"></i>
+                            {!isSidebarCollapsed && <span className="small">Rekomendasi Modal</span>}
+                        </div>
+                        {!isSidebarCollapsed && <Badge bg="info" pill style={{ fontSize: '0.65rem' }}>Auto</Badge>}
+                    </button>
+
                     {/* 4. KELOLA SUPPLIER (Hanya Non-Supplier) */}
                     {!isSupplier && (
                         <button
@@ -204,7 +216,7 @@ export default function Sidebar({
                     )}
 
                     {/* 5. RISET TREN PASAR (Hanya Non-Supplier) */}
-                    {!isSupplier && (
+                    {/* {!isSupplier && (
                         <button
                             onClick={() => handleNav('marketplace-trends')}
                             className={`w-100 btn text-start d-flex align-items-center ${isSidebarCollapsed ? 'justify-content-center px-0' : 'justify-content-between px-3'} py-2 rounded-3 border-0 mt-1 ${activeMenu === 'marketplace-trends' ? 'bg-primary text-white fw-bold shadow-sm' : 'text-light text-opacity-75'}`}
@@ -216,7 +228,7 @@ export default function Sidebar({
                             </div>
                             {!isSidebarCollapsed && <Badge bg="danger" pill style={{ fontSize: '0.65rem' }}>Hot</Badge>}
                         </button>
-                    )}
+                    )} */}
 
                     {/* 6. KELOLA USER (Superadmin Only) */}
                     {isSuperadmin && (
@@ -241,13 +253,13 @@ export default function Sidebar({
                     <div className="d-flex align-items-center justify-content-between">
                         <div className="overflow-hidden me-2">
                             <div className="fw-bold small text-truncate">{currentUser?.name}</div>
-                            <Badge 
+                            <Badge
                                 bg={
-                                    currentUser?.role === 'superadmin' ? 'danger' : 
-                                    currentUser?.role === 'admin' ? 'primary' : 
-                                    currentUser?.role === 'supplier' ? 'warning text-dark' : 
-                                    'secondary'
-                                } 
+                                    currentUser?.role === 'superadmin' ? 'danger' :
+                                        currentUser?.role === 'admin' ? 'primary' :
+                                            currentUser?.role === 'supplier' ? 'warning text-dark' :
+                                                'secondary'
+                                }
                                 style={{ fontSize: '0.65rem' }}
                             >
                                 {currentUser?.role ? currentUser.role.toUpperCase() : 'USER'}

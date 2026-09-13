@@ -20,6 +20,8 @@ import HistoryModal from './components/modals/HistoryModal';
 
 import { Card, Form, Button, Alert } from 'react-bootstrap';
 
+import RestockRecommendationView from './views/RestockRecommendationView';
+
 export default function App() {
   // 1. State Autentikasi
   const [currentUser, setCurrentUser] = useState(() => {
@@ -457,7 +459,7 @@ export default function App() {
     <div className="d-flex position-relative" style={{ minHeight: '100vh', backgroundColor: '#f0f2f5' }}>
       {isMobileOpen && <div className="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-md-none" style={{ zIndex: 1040 }} onClick={() => setIsMobileOpen(false)} />}
 
-      <Sidebar 
+      <Sidebar
         isMobileOpen={isMobileOpen}
         setIsMobileOpen={setIsMobileOpen}
         isSidebarCollapsed={isSidebarCollapsed}
@@ -492,7 +494,7 @@ export default function App() {
 
         <main className="p-3 p-md-4 overflow-auto flex-grow-1">
           {activeMenu === 'dashboard' && (
-            <DashboardView 
+            <DashboardView
               currentUser={currentUser}
               pickups={pickups}
               allProducts={allProducts}
@@ -503,7 +505,7 @@ export default function App() {
           )}
 
           {activeMenu === 'rekap-input' && canAddPickup && (
-            <InputPickupView 
+            <InputPickupView
               supplierId={supplierId}
               setSupplierId={setSupplierId}
               date={date}
@@ -524,7 +526,7 @@ export default function App() {
           )}
 
           {activeMenu === 'rekap-riwayat' && (
-            <HistoryPickupView 
+            <HistoryPickupView
               pickups={pickups}
               suppliers={suppliers}
               isSuperadmin={isSuperadmin}
@@ -540,7 +542,7 @@ export default function App() {
           )}
 
           {activeMenu === 'barang' && (
-            <ProductCatalogView 
+            <ProductCatalogView
               allProducts={allProducts}
               suppliers={suppliers}
               isSuperadmin={isSuperadmin}
@@ -551,8 +553,15 @@ export default function App() {
             />
           )}
 
+          {activeMenu === 'rekomendasi-modal' && (
+            <RestockRecommendationView
+              suppliers={suppliers}
+              currentUser={currentUser}
+            />
+          )}
+
           {activeMenu === 'supplier' && (
-            <SupplierView 
+            <SupplierView
               suppliers={suppliers}
               isSuperadmin={isSuperadmin}
               onOpenAddSupplier={handleOpenAddSupplier}
@@ -562,7 +571,7 @@ export default function App() {
           )}
 
           {activeMenu === 'users' && isSuperadmin && (
-            <UserManagementView 
+            <UserManagementView
               usersList={usersList}
               currentUserId={currentUser.id}
               onOpenAddUser={handleOpenAddUser}
@@ -574,7 +583,7 @@ export default function App() {
       </div>
 
       {/* Semua Modal Terpasang Rapi */}
-      <PaymentModal 
+      <PaymentModal
         show={showPayModal}
         onHide={() => setShowPayModal(false)}
         targetPickups={targetPayPickups}
@@ -594,7 +603,7 @@ export default function App() {
         loading={editDateLoading}
       />
 
-      <ProductModal 
+      <ProductModal
         show={showProductModal}
         onHide={() => setShowProductModal(false)}
         editingProduct={editingProduct}
@@ -604,7 +613,7 @@ export default function App() {
         onSave={handleSaveProduct}
       />
 
-      <SupplierModal 
+      <SupplierModal
         show={showSupplierModal}
         onHide={() => setShowSupplierModal(false)}
         editingSupplier={editingSupplier}
@@ -613,7 +622,7 @@ export default function App() {
         onSave={handleSaveSupplier}
       />
 
-      <UserModal 
+      <UserModal
         show={showUserModal}
         onHide={() => setShowUserModal(false)}
         editingUser={editingUser}
@@ -623,7 +632,7 @@ export default function App() {
         loading={userFormLoading}
       />
 
-      <HistoryModal 
+      <HistoryModal
         show={showHistoryModal}
         onHide={() => setShowHistoryModal(false)}
         product={historyProduct}
